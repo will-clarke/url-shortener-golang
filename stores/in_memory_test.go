@@ -10,7 +10,9 @@ func TestInMemoryStore(t *testing.T) {
 	store := stores.InMemoryStore{}
 
 	url := shortener.URL("https://example.com/omgwow")
-	shortCode, err := store.StoreURL(url)
+	shortCode = shortener.ShortCode("a-key")
+
+	shortCode, err := store.StoreURL(shortCode, url)
 	if err != nil {
 		t.Error("Cannot store URL", err)
 	}

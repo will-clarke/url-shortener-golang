@@ -5,6 +5,6 @@ import (
 )
 
 type Store interface {
-	StoreURL(shortener.ShortCode, shortener.URL) (shortener.ShortCode, error)
+	StoreURL(shortener.ShortCode, shortener.URL) error
 	GetURL(shortener.ShortCode) (shortener.URL, error)
 }
