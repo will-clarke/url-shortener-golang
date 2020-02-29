@@ -7,6 +7,7 @@ import (
 	"url-shortener/cli"
 	"url-shortener/hasher"
 	"url-shortener/stores"
+	"url-shortener/web"
 )
 
 func main() {
@@ -14,18 +15,13 @@ func main() {
 
 	url := flag.String("shorten", "", "submit a URL To shorten & store")
 	shortcode := flag.String("retrieve", "", "submit a code to retrieve URL from")
-	redirect := flag.Bool("redirect", false, "should the CLI open a browser & redirect you?")
+	redirect := flag.Bool("redirect", true, "should we redirect you?")
 
 	flag.Parse()
 
 	inMemoryShortener := newInMemoryURLShortener()
 	if *useServer {
-		fmt.Println("using server")
-		fmt.Println("using server")
-		fmt.Println("using server")
-		fmt.Println("using server")
-		fmt.Println("using server")
-		return
+		web.Serve(inMemoryShortener, *redirect)
 	}
 
 	cli.Run(inMemoryShortener, *url, *shortcode, *redirect)
