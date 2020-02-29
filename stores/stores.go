@@ -11,8 +11,8 @@ type Store interface {
 	GetURL(shortener.ShortCode) (shortener.URL, error)
 }
 
-func NewInMemoryStore() InMemoryStore {
+func NewInMemoryStore() *InMemoryStore {
 	s := InMemoryStore{}
 	s.hashmap = make(map[shortener.ShortCode]shortener.URL)
-	return s
+	return &s
 }

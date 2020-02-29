@@ -11,13 +11,19 @@ import (
 
 // URLShortener implements the Shortener interface
 type URLShortener struct {
-	store  stores.Store
-	hasher hasher.Hasher
+	Store  stores.Store
+	Hasher hasher.Hasher
 }
 
 func (us *URLShortener) StoreURL(url shortener.URL) (shortener.ShortCode, error) {
-	shortCode := us.hasher.Hash(url)
-	err := us.store.StoreURL(shortCode, url)
+	shortCode := us.Hasher.Hash(url)
+	validationErr := url.Validate()
+	if validationErr != nil {
+		return shortener.ShortCode(""), errors.Wrap(validationErr,
+			fmt.Sprintln(string(url), "is not a valid URL"))
+
+	}
+	err := us.Store.StoreURL(shortCode, url)
 	if err != nil {
 		return shortener.ShortCode(""), errors.Wrap(err,
 			fmt.Sprintln("Could not store url", url))
@@ -26,5 +32,5 @@ func (us *URLShortener) StoreURL(url shortener.URL) (shortener.ShortCode, error)
 }
 
 func (us *URLShortener) GetURL(shortCode shortener.ShortCode) (shortener.URL, error) {
-	return us.store.GetURL(shortCode)
+	return us.Store.GetURL(shortCode)
 }

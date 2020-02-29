@@ -11,7 +11,8 @@ import (
 
 const validChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-"
 
-func TestHash(t *testing.T) {
+func TestHashSHA256(t *testing.T) {
+	hasherInstance := hasher.SHA256{}
 	urls := []shortener.URL{
 		"",
 		"https://www.example.com/legit-url",
@@ -23,7 +24,7 @@ func TestHash(t *testing.T) {
 	}
 	for _, url := range urls {
 		t.Run("TestHash-"+string(url), func(t *testing.T) {
-			code := hasher.Hash(url)
+			code := hasherInstance.Hash(url)
 			if len(code) != hasher.SIZE {
 				t.Error("hahsed", url, "and got unexpected code", code)
 			}

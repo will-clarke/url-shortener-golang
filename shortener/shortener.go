@@ -17,7 +17,7 @@ type Shortener interface {
 	GetURL(ShortCode) (URL, error)
 }
 
-func (u URL) validate() error {
+func (u URL) Validate() error {
 	_, err := url.Parse(string(u))
 	return err
 }

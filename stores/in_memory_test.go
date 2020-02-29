@@ -12,8 +12,8 @@ func TestInMemoryStore(t *testing.T) {
 	url := shortener.URL("https://example.com/omgwow")
 	shortCode := shortener.ShortCode("omg-key")
 
-	storeURL(t, &store, shortCode, url)
-	expectToRetrieveURL(t, &store, shortCode, url)
+	storeURL(t, store, shortCode, url)
+	expectToRetrieveURL(t, store, shortCode, url)
 }
 
 func TestInMemoryStoreWithSeveralURLs(t *testing.T) {
@@ -26,16 +26,16 @@ func TestInMemoryStoreWithSeveralURLs(t *testing.T) {
 	url3 := shortener.URL("https://example.com/something-else")
 	shortCode3 := shortener.ShortCode("something-key")
 
-	storeURL(t, &store, shortCode1, url1)
-	storeURL(t, &store, shortCode2, url2)
+	storeURL(t, store, shortCode1, url1)
+	storeURL(t, store, shortCode2, url2)
 
-	expectToRetrieveURL(t, &store, shortCode1, url1)
-	expectToRetrieveURL(t, &store, shortCode2, url2)
+	expectToRetrieveURL(t, store, shortCode1, url1)
+	expectToRetrieveURL(t, store, shortCode2, url2)
 
-	storeURL(t, &store, shortCode3, url3)
-	expectToRetrieveURL(t, &store, shortCode3, url3)
+	storeURL(t, store, shortCode3, url3)
+	expectToRetrieveURL(t, store, shortCode3, url3)
 
-	expectToRetrieveURL(t, &store, shortCode1, url1)
+	expectToRetrieveURL(t, store, shortCode1, url1)
 }
 
 func expectToRetrieveURL(t *testing.T, store stores.Store, shortCode shortener.ShortCode, expectedURL shortener.URL) {

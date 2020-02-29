@@ -14,7 +14,9 @@ type Hasher interface {
 	Hash(shortener.URL) shortener.ShortCode
 }
 
-func Hash(url shortener.URL) shortener.ShortCode {
+type SHA256 struct{}
+
+func (h *SHA256) Hash(url shortener.URL) shortener.ShortCode {
 	hashedBytes := sha256.Sum256([]byte(url + TOP_SECRET_SALT))
 	base64String := base64.StdEncoding.EncodeToString(hashedBytes[:])
 	sanitisedString := strings.ReplaceAll(base64String, "/", "-")
