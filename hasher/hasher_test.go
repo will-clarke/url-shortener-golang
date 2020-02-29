@@ -1,6 +1,8 @@
 package hasher_test
 
 import (
+	"crypto/rand"
+	"encoding/base64"
 	"strings"
 	"testing"
 	"url-shortener/hasher"
@@ -14,7 +16,10 @@ func TestHash(t *testing.T) {
 		"",
 		"https://www.example.com/legit-url",
 		"https://www.example.com/another-url",
-		"any other string",
+		"any-other-random-strings",
+		shortener.URL(randomString(1)),
+		shortener.URL(randomString(10)),
+		shortener.URL(randomString(100)),
 	}
 	for _, url := range urls {
 		t.Run("TestHash-"+string(url), func(t *testing.T) {
@@ -31,4 +36,10 @@ func TestHash(t *testing.T) {
 			}
 		})
 	}
+}
+
+func randomString(l int) string {
+	bytes := make([]byte, l)
+	_, _ = rand.Read(bytes[:])
+	return base64.StdEncoding.EncodeToString(bytes[:])
 }
