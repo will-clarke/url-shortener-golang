@@ -8,11 +8,9 @@ type URL string
 // ShortCode is a hash(?) of a URL
 type ShortCode string
 
-// Shortener is the interface is the main way external services
-// eg. CLI or Web Server
+// Shortener is the interface external services
+// (eg. CLI or Web Server) should use
 type Shortener interface {
 	StoreURL(URL) (ShortCode, error)
 	GetURL(ShortCode) (URL, error)
 }
-
-// TODO: validate URL in method

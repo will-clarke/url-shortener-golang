@@ -10,6 +10,10 @@ import (
 const SIZE = 12
 const TOP_SECRET_SALT = "super-top-secret-probs-an-env-var"
 
+type Hasher interface {
+	Hash(shortener.URL) shortener.ShortCode
+}
+
 func Hash(url shortener.URL) shortener.ShortCode {
 	hashedBytes := sha256.Sum256([]byte(url + TOP_SECRET_SALT))
 	base64String := base64.StdEncoding.EncodeToString(hashedBytes[:])
