@@ -1,5 +1,7 @@
 package shortener
 
+import "net/url"
+
 // Shortener is the where the main business logic lives
 
 // URL is a URL that can be validated
@@ -13,4 +15,9 @@ type ShortCode string
 type Shortener interface {
 	StoreURL(URL) (ShortCode, error)
 	GetURL(ShortCode) (URL, error)
+}
+
+func (u URL) validate() error {
+	_, err := url.Parse(string(u))
+	return err
 }
