@@ -9,39 +9,39 @@ import (
 	"url-shortener/shortener"
 )
 
-func Run(urlShortener app.URLShortener, urlString, shortCodeString string, redirect bool) {
+func Run(urlShortener app.URLShortener, urlString, shortCodeString string, redirect bool) (s string) {
 	if urlString != "" {
-		storeURL(urlShortener, urlString)
+		s += storeURL(urlShortener, urlString)
 	}
 
 	if shortCodeString != "" {
-		getURL(urlShortener, shortCodeString, redirect)
+		s += getURL(urlShortener, shortCodeString, redirect)
 	}
+	return s
 }
 
-func storeURL(urlShortener app.URLShortener, urlString string) {
+func storeURL(urlShortener app.URLShortener, urlString string) string {
 	url := shortener.URL(urlString)
 	code, err := urlShortener.StoreURL(url)
 	if err != nil {
-		fmt.Println(err)
+		return err.Error()
 	}
-	fmt.Println("Successfully shortened", urlString, "to", string(code))
+	return fmt.Sprintln("Successfully shortened", urlString, "to", string(code))
 }
 
-func getURL(urlShortener app.URLShortener, shortCodeString string, redirect bool) {
+func getURL(urlShortener app.URLShortener, shortCodeString string, redirect bool) string {
 	shortCode := shortener.ShortCode(shortCodeString)
 	url, err := urlShortener.GetURL(shortCode)
 	if err != nil {
-		fmt.Println(err)
+		return fmt.Sprintln(err)
 	}
 	if string(url) == "" {
-		fmt.Println("Unable to find", shortCodeString, "in the database")
-		return
+		return fmt.Sprintln("Unable to find", shortCodeString, "in the database")
 	}
-	fmt.Println("Successfully retrieved", string(url), "from", shortCodeString)
 	if redirect {
 		openBrowser(string(url))
 	}
+	return fmt.Sprintln("Successfully retrieved", string(url), "from", shortCodeString)
 }
 
 // cribbed from https://gist.github.com/nanmu42/4fbaf26c771da58095fa7a9f14f23d27

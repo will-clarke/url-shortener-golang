@@ -18,6 +18,6 @@ type Shortener interface {
 }
 
 func (u URL) Validate() error {
-	_, err := url.Parse(string(u))
+	_, err := url.ParseRequestURI(string(u))
 	return err
 }

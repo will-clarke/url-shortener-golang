@@ -22,7 +22,10 @@ func main() {
 		web.Serve(inMemoryShortener, *redirect)
 	}
 
-	cli.Run(inMemoryShortener, *url, *shortcode, *redirect)
+	cliOutput := cli.Run(inMemoryShortener, *url, *shortcode, *redirect)
+	if cliOutput != "" {
+		fmt.Print(cliOutput)
+	}
 
 	if !*useServer && *url == "" && *shortcode == "" {
 		helpMessage()
