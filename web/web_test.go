@@ -36,7 +36,7 @@ func TestStore(t *testing.T) {
 	router.ServeHTTP(w, req)
 
 	assert.Equal(t, 200, w.Code)
-	expectedBody := `{"success":true,"error":"","redirectURL":"localhost:8080/Ti0-MV4cifgD"}
+	expectedBody := `{"success":true,"redirectURL":"localhost:8080/Ti0-MV4cifgD"}
 `
 	assert.Equal(t, expectedBody, w.Body.String())
 }
@@ -52,7 +52,7 @@ func TestStoreAndRedirect(t *testing.T) {
 	req.Header.Set("Content-Type", "application/json")
 	router.ServeHTTP(w, req)
 	assert.Equal(t, 200, w.Code)
-	expectedBody := `{"success":true,"error":"","redirectURL":"localhost:8080/Ti0-MV4cifgD"}
+	expectedBody := `{"success":true,"redirectURL":"localhost:8080/Ti0-MV4cifgD"}
 `
 	assert.Equal(t, expectedBody, w.Body.String())
 

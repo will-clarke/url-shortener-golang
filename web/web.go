@@ -13,7 +13,10 @@ const HOST = "localhost:8080/" // probs use an ENV VAR for this
 
 func Serve(urlShortener app.URLShortener, redirect bool) {
 	r := SetupRouter(urlShortener, redirect)
-	r.Run() // listen and serve on 0.0.0.0:8080
+	err := r.Run() // listen and serve on 0.0.0.0:8080
+	if err != nil {
+		fmt.Println(err)
+	}
 }
 
 func SetupRouter(urlShortener app.URLShortener, redirect bool) *gin.Engine {
@@ -29,7 +32,7 @@ func SetupRouter(urlShortener app.URLShortener, redirect bool) *gin.Engine {
 
 type response struct {
 	Success     bool   `json:"success"`
-	Error       string `json:"error",omitempty:true`
+	Error       string `json:"error,omitempty"`
 	RedirectURL string `json:"redirectURL"`
 }
 
@@ -44,6 +47,14 @@ func (h *handler) shorten(c *gin.Context) {
 	}
 	var r shortenRequest
 	err := c.Bind(&r)
+	if err != nil {
+		c.JSON(http.StatusBadRequest,
+			response{
+				Success: false,
+				Error:   "Unable to find the URL to shorten:" + err.Error(),
+			})
+		return
+	}
 	if r.URL == "" {
 		c.JSON(http.StatusBadRequest,
 			response{
