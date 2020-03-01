@@ -5,8 +5,6 @@ import (
 	"fmt"
 	"url-shortener/app"
 	"url-shortener/cli"
-	"url-shortener/hasher"
-	"url-shortener/stores"
 	"url-shortener/web"
 )
 
@@ -19,7 +17,7 @@ func main() {
 
 	flag.Parse()
 
-	inMemoryShortener := newInMemoryURLShortener()
+	inMemoryShortener := app.NewInMemoryURLShortener()
 	if *useServer {
 		web.Serve(inMemoryShortener, *redirect)
 	}
@@ -28,14 +26,6 @@ func main() {
 
 	if !*useServer && *url == "" && *shortcode == "" {
 		helpMessage()
-	}
-}
-
-func newInMemoryURLShortener() app.URLShortener {
-	hashInstance := hasher.SHA256{}
-	return app.URLShortener{
-		Store:  stores.NewInMemoryStore(),
-		Hasher: &hashInstance,
 	}
 }
 

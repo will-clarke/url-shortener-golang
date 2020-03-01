@@ -15,6 +15,14 @@ type URLShortener struct {
 	Hasher hasher.Hasher
 }
 
+func NewInMemoryURLShortener() URLShortener {
+	hashInstance := hasher.SHA256{}
+	return URLShortener{
+		Store:  stores.NewInMemoryStore(),
+		Hasher: &hashInstance,
+	}
+}
+
 func (us *URLShortener) StoreURL(url shortener.URL) (shortener.ShortCode, error) {
 	shortCode := us.Hasher.Hash(url)
 	validationErr := url.Validate()
