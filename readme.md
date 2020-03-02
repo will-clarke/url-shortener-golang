@@ -63,5 +63,12 @@ We've got a pretty minimal makefile
 $ go run main.go -help
 ```
 
-### Some shortcomings
-We don't cleanly exit - it'd be better to be able to clean up database connections, etc, and have a nicer way to turn the server off.
+### Potential improvements
+- It would have been good to know a bit more about the service's requirements; the amount of uptime needed, concurrent connections, peak load, etc.. all would have helped influence the design of this.
+- We don't cleanly exit - it'd be better to be able to clean up database connections, etc, and have a nicer way to turn the server or database connection off.
+- We don't actually properly use the `shortener` interface; I reckon that `cli` and `web` should rely on `shortener.Shortener` rather than `app.URLShortener` (the actual interface, rather than just an implementation of it).
+Having said that, I'm unconvinced that we actually do *need* an interface here. If we're trying to keep things simple (as we should be), perhaps I should just remove the pointless `shortener.Shortener` interface alltogether as we're unlikely to make different implementations of the interface. Something to think about.
+- the `shortener` / `app` distinction is perhaps a bit vague. Maybe I should totally remove the `shortener` interface and just move `URL` / `ShortCode` to a generic `models` package??
+- This is probably over-engineered for a simple url-shortening service. Something with less complexity would definitely work (eg. only actual important interface is the `Store` one).
+- The CLI only really works locally. This is fine if you're happy to SSH into the server and run the CLI there - but that's not a great solution. You obviously could also connect to the prod database (you'd have to have the connection / credentials stored locally), but that's also not a great idea. Ideally the CLI would just be a wrapper to the server.
+- I'm not sure `hasher` is a good name. Maybe `tokenisation` would be better?
