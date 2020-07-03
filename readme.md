@@ -1,5 +1,7 @@
 # URL Shortener
 
+A slightly over-engineered URL shortener written in Go.
+
 ## Running locally
 This project uses `go mod`, so you'll have to make sure you've got `EXPORT GO111MODULE=ON` defined in your shell or `~/.bashrc`.
 `make install`
@@ -69,6 +71,7 @@ $ go run main.go -help
 - We don't actually properly use the `shortener` interface; I reckon that `cli` and `web` should rely on `shortener.Shortener` rather than `app.URLShortener` (the actual interface, rather than just an implementation of it).
 Having said that, I'm unconvinced that we actually do *need* an interface here. If we're trying to keep things simple (as we should be), perhaps I should just remove the pointless `shortener.Shortener` interface alltogether as we're unlikely to make different implementations of the interface. Something to think about.
 - the `shortener` / `app` distinction is perhaps a bit vague. Maybe I should totally remove the `shortener` interface and just move `URL` / `ShortCode` to a generic `models` package??
-- This is probably over-engineered for a simple url-shortening service. Something with less complexity would definitely work (eg. only actual important interface is the `Store` one).
+- This is totally over-engineered for a simple url-shortening service. Something with less complexity would definitely work (eg. only actual important interface is the `Store` one).
 - The CLI only really works locally. This is fine if you're happy to SSH into the server and run the CLI there - but that's not a great solution. You obviously could also connect to the prod database (you'd have to have the connection / credentials stored locally), but that's also not a great idea. Ideally the CLI would just be a wrapper to the server.
+- The CLI doesn't have an amazing interface
 - I'm not sure `hasher` is a good name. Maybe `tokenisation` would be better?
