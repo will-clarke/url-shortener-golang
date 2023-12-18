@@ -8,6 +8,7 @@ This project uses `go mod`, so you'll have to make sure you've got `EXPORT GO111
 
 ## Architecture
 
+
 #### shortener
 `shortener` is the central domain. Most of the other packages rely on either the `shortener` interface or `URL` / `ShortCode` types. I tried to make this vaguely [hexagonal](https://en.wikipedia.org/wiki/Hexagonal_architecture_(software)) (in other words, these central business rules don't rely on any other packages & connect to other packages via interfaces).
 
@@ -49,7 +50,7 @@ Currently I haven't implemented an actual _persistent_ store.. which is a bit la
 So the CLI only half-works; you have to both add and retrieve at the same time.
 If we were to add a store that *actually stores data persistently*, this would work a bit more smoothly.
 ```
-$ go run main.go -shorten https://example.com/yolo 
+$ go run main.go -shorten https://example.com/yolo
 # => Successfully shortened https://example.com/yolo to LpnX-1cqUSsL
 
 $ go run main.go -shorten https://example.com/yolo -retrieve  LpnX-1cqUSsL -redirect
@@ -75,3 +76,18 @@ Having said that, I'm unconvinced that we actually do *need* an interface here. 
 - The CLI only really works locally. This is fine if you're happy to SSH into the server and run the CLI there - but that's not a great solution. You obviously could also connect to the prod database (you'd have to have the connection / credentials stored locally), but that's also not a great idea. Ideally the CLI would just be a wrapper to the server.
 - The CLI doesn't have an amazing interface
 - I'm not sure `hasher` is a good name. Maybe `tokenisation` would be better?
+
+### Example - the app in action
+
+``` bash
+➜ go run url-shortener.go -help
+Usage of ./url-shortener:
+  -redirect
+        should we redirect you? (default true)
+  -retrieve string
+        submit a code to retrieve URL from
+  -server
+        start server
+  -shorten string
+        submit a URL To shorten & store
+```

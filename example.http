@@ -1,0 +1,11 @@
+# Create a new short URL
+POST localhost:8080/shorten
+Content-Type: application/json
+
+{
+    "URL": "http://www.example.com" 
+}
+
+
+# Retrieve a URL
+GET localhost:8080/:id

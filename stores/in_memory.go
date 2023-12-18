@@ -3,7 +3,7 @@ package stores
 import "url-shortener/shortener"
 
 type InMemoryStore struct {
-	hashmap map[shortener.ShortCode]shortener.URL
+	hashmap map[shortener.shortCode]shortener.URL
 }
 
 func (s *InMemoryStore) StoreURL(shortCode shortener.ShortCode, url shortener.URL) error {
