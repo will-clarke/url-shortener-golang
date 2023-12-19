@@ -4,9 +4,9 @@ import (
 	"flag"
 	"fmt"
 
-	"git.sr.ht/~will-clarke/url-shortner-golang/app"
-	"git.sr.ht/~will-clarke/url-shortner-golang/cli"
-	"git.sr.ht/~will-clarke/url-shortner-golang/web"
+	"git.sr.ht/~will-clarke/url-shortener-golang/app"
+	"git.sr.ht/~will-clarke/url-shortener-golang/cli"
+	"git.sr.ht/~will-clarke/url-shortener-golang/web"
 )
 
 func main() {

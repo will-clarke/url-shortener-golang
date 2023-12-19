@@ -6,7 +6,7 @@ import (
 	"os"
 	"strings"
 
-	"git.sr.ht/~will-clarke/url-shortner-golang/shortener"
+	"git.sr.ht/~will-clarke/url-shortener-golang/shortener"
 )
 
 // Filestore stores URLs in a plain text file.

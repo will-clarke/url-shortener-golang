@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	"git.sr.ht/~will-clarke/url-shortner-golang/app"
-	"git.sr.ht/~will-clarke/url-shortner-golang/web"
+	"git.sr.ht/~will-clarke/url-shortener-golang/app"
+	"git.sr.ht/~will-clarke/url-shortener-golang/web"
 
 	"github.com/stretchr/testify/assert"
 )

@@ -2,8 +2,8 @@ package stores_test
 
 import (
 	"testing"
-	"git.sr.ht/~will-clarke/url-shortner-golang/shortener"
-	"git.sr.ht/~will-clarke/url-shortner-golang/stores"
+	"git.sr.ht/~will-clarke/url-shortener-golang/shortener"
+	"git.sr.ht/~will-clarke/url-shortener-golang/stores"
 )
 
 func TestInMemoryStore(t *testing.T) {

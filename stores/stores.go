@@ -3,7 +3,7 @@ package stores
 import (
 	"os"
 
-	"git.sr.ht/~will-clarke/url-shortner-golang/shortener"
+	"git.sr.ht/~will-clarke/url-shortener-golang/shortener"
 )
 
 // Store interface is how the shortener interacts

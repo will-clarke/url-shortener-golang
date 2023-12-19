@@ -1,6 +1,6 @@
 package stores
 
-import "git.sr.ht/~will-clarke/url-shortner-golang/shortener"
+import "git.sr.ht/~will-clarke/url-shortener-golang/shortener"
 
 type InMemoryStore struct {
 	hashmap map[shortener.ShortCode]shortener.URL

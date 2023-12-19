@@ -36,9 +36,9 @@ There are currently two main ways to run the app:
 ### Server Example
 
 ```
-$ make run_server_redirect # or go run main.go -server true -redirect true
+$ make run
 
-
+$ # In another terminal:
 $ curl -X POST -H "Content-Type: application/json" \
  -d '{"URL": "https://example.com/foo"}' \
  localhost:8080/shorten
@@ -52,19 +52,14 @@ $ curl localhost:8080/Ti0-MV4cifgD
 
 ### CLI Example
 
-Currently I haven't implemented an actual _persistent_ store.. which is a bit lazy but seems to work for the time being.
-Because of this, the CLI only half-works; you have to both add and retrieve at the same time.
-If we were to add a store that _actually stores data persistently_, this would work a bit more smoothly.
-
 ```
 go install
 
 $ url-shortener-golang -shorten https://example.com/yolo
 # => Successfully shortened https://example.com/yolo to LpnX-1cqUSsL
 
-$ url-shortener-golang -shorten https://example.com/yolo -retrieve  LpnX-1cqUSsL -redirect
-# => Successfully shortened https://example.com/yolo to LpnX-1cqUSsL
-# => Successfully retrieved https://example.com/yolo from LpnX-1cqUSsL
+$ url-shortener-golang -retrieve LpnX-1cqUSsL
+# =>Successfully retrieved https://example.com/yolo from LpnX-1cqUSsL
 # => ***OPENS BROWSER & OPENS https://example.com/yolo***
 
 ```
