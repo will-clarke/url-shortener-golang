@@ -2,9 +2,9 @@ package app
 
 import (
 	"fmt"
-	"url-shortener/hasher"
-	"url-shortener/shortener"
-	"url-shortener/stores"
+	"git.sr.ht/~will-clarke/url-shortner-golang/hasher"
+	"git.sr.ht/~will-clarke/url-shortner-golang/shortener"
+	"git.sr.ht/~will-clarke/url-shortner-golang/stores"
 
 	"github.com/pkg/errors"
 )

@@ -5,8 +5,8 @@ import (
 	"log"
 	"os/exec"
 	"runtime"
-	"url-shortener/app"
-	"url-shortener/shortener"
+	"git.sr.ht/~will-clarke/url-shortner-golang/app"
+	"git.sr.ht/~will-clarke/url-shortner-golang/shortener"
 )
 
 func Run(urlShortener app.URLShortener, urlString, shortCodeString string, redirect bool) (s string) {

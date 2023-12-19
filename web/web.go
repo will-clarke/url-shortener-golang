@@ -3,8 +3,8 @@ package web
 import (
 	"fmt"
 	"net/http"
-	"url-shortener/app"
-	"url-shortener/shortener"
+	"git.sr.ht/~will-clarke/url-shortner-golang/app"
+	"git.sr.ht/~will-clarke/url-shortner-golang/shortener"
 
 	"github.com/gin-gonic/gin"
 )

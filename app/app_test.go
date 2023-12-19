@@ -2,8 +2,8 @@ package app_test
 
 import (
 	"testing"
-	"url-shortener/app"
-	"url-shortener/shortener"
+	"git.sr.ht/~will-clarke/url-shortner-golang/app"
+	"git.sr.ht/~will-clarke/url-shortner-golang/shortener"
 )
 
 func TestURLShortener_StoreURL(t *testing.T) {

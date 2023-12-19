@@ -5,8 +5,8 @@ import (
 	"net/http/httptest"
 	"strings"
 	"testing"
-	"url-shortener/app"
-	"url-shortener/web"
+	"git.sr.ht/~will-clarke/url-shortner-golang/app"
+	"git.sr.ht/~will-clarke/url-shortner-golang/web"
 
 	"github.com/stretchr/testify/assert"
 )

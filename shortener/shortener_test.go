@@ -2,7 +2,7 @@ package shortener_test
 
 import (
 	"testing"
-	"url-shortener/shortener"
+	"git.sr.ht/~will-clarke/url-shortner-golang/shortener"
 )
 
 func TestURL_Validate(t *testing.T) {

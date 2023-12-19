@@ -4,7 +4,7 @@ import (
 	"crypto/sha256"
 	"encoding/base64"
 	"strings"
-	"url-shortener/shortener"
+	"git.sr.ht/~will-clarke/url-shortner-golang/shortener"
 )
 
 const SIZE = 12

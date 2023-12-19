@@ -5,8 +5,8 @@ import (
 	"encoding/base64"
 	"strings"
 	"testing"
-	"url-shortener/hasher"
-	"url-shortener/shortener"
+	"git.sr.ht/~will-clarke/url-shortner-golang/hasher"
+	"git.sr.ht/~will-clarke/url-shortner-golang/shortener"
 )
 
 const validChars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+-"

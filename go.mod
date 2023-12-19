@@ -1,4 +1,4 @@
-module url-shortener
+module git.sr.ht/~will-clarke/url-shortner-golang
 
 go 1.12
 

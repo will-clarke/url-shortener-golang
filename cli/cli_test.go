@@ -2,8 +2,8 @@ package cli_test
 
 import (
 	"testing"
-	"url-shortener/app"
-	"url-shortener/cli"
+	"git.sr.ht/~will-clarke/url-shortner-golang/app"
+	"git.sr.ht/~will-clarke/url-shortner-golang/cli"
 
 	"github.com/stretchr/testify/assert"
 )
