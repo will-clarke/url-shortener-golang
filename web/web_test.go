@@ -5,6 +5,7 @@ import (
 	"net/http/httptest"
 	"strings"
 	"testing"
+
 	"git.sr.ht/~will-clarke/url-shortner-golang/app"
 	"git.sr.ht/~will-clarke/url-shortner-golang/web"
 
@@ -20,8 +21,7 @@ func TestServeGetNonExisting(t *testing.T) {
 	router.ServeHTTP(w, req)
 
 	assert.Equal(t, 404, w.Code)
-	expectedBody := `{"success":false,"error":"code 'not-exist-in-db' not found in database","redirectURL":""}
-`
+	expectedBody := `{"success":false,"error":"code 'not-exist-in-db' not found in database","redirectURL":""}`
 	assert.Equal(t, expectedBody, w.Body.String())
 }
 
@@ -36,8 +36,7 @@ func TestStore(t *testing.T) {
 	router.ServeHTTP(w, req)
 
 	assert.Equal(t, 200, w.Code)
-	expectedBody := `{"success":true,"redirectURL":"localhost:8080/Ti0-MV4cifgD"}
-`
+	expectedBody := `{"success":true,"redirectURL":"localhost:8080/Ti0-MV4cifgD"}`
 	assert.Equal(t, expectedBody, w.Body.String())
 }
 
@@ -52,8 +51,7 @@ func TestStoreAndRedirect(t *testing.T) {
 	req.Header.Set("Content-Type", "application/json")
 	router.ServeHTTP(w, req)
 	assert.Equal(t, 200, w.Code)
-	expectedBody := `{"success":true,"redirectURL":"localhost:8080/Ti0-MV4cifgD"}
-`
+	expectedBody := `{"success":true,"redirectURL":"localhost:8080/Ti0-MV4cifgD"}`
 	assert.Equal(t, expectedBody, w.Body.String())
 
 	// test the GET /:code

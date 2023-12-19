@@ -92,7 +92,7 @@ $ go run main.go -help
 ### Example - the app in action
 
 ```bash
-➜ go run url-shortener.go -help
+➜ url-shortener-golang -help
 Usage of ./url-shortener:
   -redirect
         should we redirect you? (default true)

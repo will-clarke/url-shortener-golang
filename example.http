@@ -3,7 +3,7 @@ POST localhost:8080/shorten
 Content-Type: application/json
 
 {
-    "URL": "http://www.example.com" 
+    "URL": "http://www.example.com/some-page" 
 }
 
 

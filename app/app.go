@@ -31,7 +31,7 @@ func (us *URLShortener) StoreURL(url shortener.URL) (shortener.ShortCode, error)
 	}
 	err := us.Store.StoreURL(shortCode, url)
 	if err != nil {
-		return shortener.ShortCode(""), fmt.Errorf("Could not store url: %w", string(url), err)
+		return shortener.ShortCode(""), fmt.Errorf("Could not store url %s: %w", string(url), err)
 	}
 	return shortCode, nil
 }
