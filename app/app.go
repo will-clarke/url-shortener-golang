@@ -22,6 +22,18 @@ func NewInMemoryURLShortener() URLShortener {
 	}
 }
 
+func NewFileStore() (URLShortener, error) {
+	hashInstance := hasher.SHA256{}
+	store, err := stores.NewFileStore()
+	if err != nil {
+		return URLShortener{}, err
+	}
+	return URLShortener{
+		Store:  store,
+		Hasher: &hashInstance,
+	}, nil
+}
+
 func (us *URLShortener) StoreURL(url shortener.URL) (shortener.ShortCode, error) {
 	shortCode := us.Hasher.Hash(url)
 	validationErr := url.Validate()

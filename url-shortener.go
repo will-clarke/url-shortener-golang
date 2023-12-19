@@ -18,12 +18,19 @@ func main() {
 
 	flag.Parse()
 
-	inMemoryShortener := app.NewInMemoryURLShortener()
-	if *useServer {
-		web.Serve(inMemoryShortener, *redirect)
+	// Because we used an interface, swapping out the backend stores is pretty easy:
+	// store := app.NewInMemoryURLShortener()
+	store, err := app.NewFileStore()
+	if err != nil {
+		fmt.Println("Error creating filestore", err)
+		panic(err)
 	}
 
-	cliOutput := cli.Run(inMemoryShortener, *url, *shortcode, *redirect)
+	if *useServer {
+		web.Serve(store, *redirect)
+	}
+
+	cliOutput := cli.Run(store, *url, *shortcode, *redirect)
 	if cliOutput != "" {
 		fmt.Print(cliOutput)
 	}
