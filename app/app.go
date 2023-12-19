@@ -2,11 +2,10 @@ package app
 
 import (
 	"fmt"
+
 	"git.sr.ht/~will-clarke/url-shortner-golang/hasher"
 	"git.sr.ht/~will-clarke/url-shortner-golang/shortener"
 	"git.sr.ht/~will-clarke/url-shortner-golang/stores"
-
-	"github.com/pkg/errors"
 )
 
 // URLShortener implements the Shortener interface
@@ -27,14 +26,12 @@ func (us *URLShortener) StoreURL(url shortener.URL) (shortener.ShortCode, error)
 	shortCode := us.Hasher.Hash(url)
 	validationErr := url.Validate()
 	if validationErr != nil {
-		return shortener.ShortCode(""), errors.Wrap(validationErr,
-			fmt.Sprintln(string(url), "is not a valid URL"))
+		return shortener.ShortCode(""), fmt.Errorf("%s is not a valid URL: %w", string(url), validationErr)
 
 	}
 	err := us.Store.StoreURL(shortCode, url)
 	if err != nil {
-		return shortener.ShortCode(""), errors.Wrap(err,
-			fmt.Sprintln("Could not store url", url))
+		return shortener.ShortCode(""), fmt.Errorf("Could not store url: %w", string(url), err)
 	}
 	return shortCode, nil
 }

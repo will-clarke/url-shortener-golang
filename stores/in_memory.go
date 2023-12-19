@@ -3,7 +3,7 @@ package stores
 import "git.sr.ht/~will-clarke/url-shortner-golang/shortener"
 
 type InMemoryStore struct {
-	hashmap map[shortener.shortCode]shortener.URL
+	hashmap map[shortener.ShortCode]shortener.URL
 }
 
 func (s *InMemoryStore) StoreURL(shortCode shortener.ShortCode, url shortener.URL) error {
